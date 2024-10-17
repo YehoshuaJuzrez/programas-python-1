@@ -65,22 +65,29 @@ while True:
 print("\nLista de Empleados:")
 print(empleados)
 
+# Imprimir tabla de datos
 print("\nTabla de datos:")
 print("Nombre\tEdad\tSexo\tSueldo\tPasatiempos")
 for emp in empleados:
-    print(f"{emp['nombre']}\t{emp['edad']}\t{emp['sexo']}\t{emp['sueldo']}\t{emp['pasatiempos']}")
+    nombre = emp['nombre']
+    edad = emp['edad']
+    sexo = emp['sexo']
+    sueldo = emp['sueldo']
+    pasatiempos = emp['pasatiempos']
+    print(f"{nombre}\t{edad}\t{sexo}\t{sueldo}\t{pasatiempos}")
 
-# Resumen de datos
+# Calcular estadísticas de resumen
 total_empleados = len(empleados)
-total_hombres = sum(1 for x in empleados if x['sexo'] == 'h')
-total_mujeres = sum(1 for x in empleados if x['sexo'] == 'm')
-suma_edad = sum(x['edad'] for x in empleados)
+total_hombres = sum(1 for emp in empleados if emp['sexo'] == 'h')
+total_mujeres = sum(1 for emp in empleados if emp['sexo'] == 'm')
+suma_edad = sum(emp['edad'] for emp in empleados)
 promedio_edad = suma_edad / total_empleados if total_empleados > 0 else 0
-suma_sueldo = sum(x['sueldo'] for x in empleados)
+suma_sueldo = sum(emp['sueldo'] for emp in empleados)
 promedio_sueldo = suma_sueldo / total_empleados if total_empleados > 0 else 0
 
-empleado_mayor_edad = max(empleados, key=lambda x: x['edad'])
-empleado_menor_edad = min(empleados, key=lambda x: x['edad'])
+# Obtener empleados de mayor y menor edad
+empleado_mayor_edad = max(empleados, key=lambda emp: emp['edad'])
+empleado_menor_edad = min(empleados, key=lambda emp: emp['edad'])
 
 # Imprimir resumen
 print("\nResumen")
@@ -91,5 +98,5 @@ print(f"Suma de edades: {suma_edad}")
 print(f"Promedio de edad: {promedio_edad:.2f}")
 print(f"Suma de sueldos: {suma_sueldo}")
 print(f"Promedio de sueldo: {promedio_sueldo:.2f}")
-print(f"\nEmpleado de mayor edad: {empleado_mayor_edad['nombre']} con {empleado_mayor_edad['edad']} años")
+print(f"Empleado de mayor edad: {empleado_mayor_edad['nombre']} con {empleado_mayor_edad['edad']} años")
 print(f"Empleado de menor edad: {empleado_menor_edad['nombre']} con {empleado_menor_edad['edad']} años")
